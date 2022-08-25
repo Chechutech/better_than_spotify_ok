@@ -15,8 +15,13 @@ const spotifyApi = new SpotifyWebApi({
 interface Track{
   title:string;
   artist:string;
+  uri:any;
 }
- const Dashboard: React.FC = ({code}:any) => {
+type Proptype = {
+  code:string
+}
+
+ const Dashboard: React.FC <Proptype>  = ({code}) => {
 
    const accessToken = useAuth(code)
   const [search, setSearch] = useState('')
@@ -81,7 +86,7 @@ interface Track{
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <p>Searchbar with a placeholder</p>
+        
         <IonSearchbar value={search} onIonChange={e => setSearch(e.detail.value!)} placeholder="Search Songs/Artists">
         <section className='flex-grow-1 my-2' style={{ overflow: 'auto' }}>
            {searchResults.map((track:any) => (
@@ -93,6 +98,9 @@ interface Track{
           </div>
         )}
          </section>
+         
+         <Player accessToken={ accessToken } trackUri={playingTrack?.uri}/>
+      
         </IonSearchbar>
 
       </IonContent>

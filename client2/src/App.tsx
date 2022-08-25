@@ -1,17 +1,21 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
+  IonContent,
   IonIcon,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
   IonTabs,
-  setupIonicReact
+  setupIonicReact,
+  
+  
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
+import { ellipse } from 'ionicons/icons';
+
+import Dashboard from './components/Dashboard';
 
 import Login from './pages/Login';
 
@@ -31,33 +35,33 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
+
 /* Theme variables */
 import './theme/variables.css';
 
+
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
+interface ContainerProps{}
+
+const code= new URLSearchParams(window.location.search).get('code');
+
+const App: React.FC<ContainerProps>= () => {
+  return (
+
+    <IonApp>    
+     
+     
+     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
          
           <Route exact path="/">
-            <Redirect to="/tab1" />
+          { code ? <Dashboard code={code} /> : <Login /> } 
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/login">
+        <IonTabBar slot="bottom">         
+          <IonTabButton tab="tab2" href="/">
             <IonIcon icon={ellipse} />
             <IonLabel>Tab 2</IonLabel>
           </IonTabButton>
@@ -66,6 +70,7 @@ const App: React.FC = () => (
       </IonTabs>
     </IonReactRouter>
   </IonApp>
+  
 );
-
+}
 export default App;
