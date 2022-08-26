@@ -1,7 +1,15 @@
 
-.btn-login {
-    margin-top:  120%;
+.button-inner {
+    display:flex;
+    margin-top:0%;
+    justify-content: center;
+    z-index:100;
+  
     
-   
-    
+}
+.logo{
+    display:flex;
+    margin-top:0%;
+  
+  
 }

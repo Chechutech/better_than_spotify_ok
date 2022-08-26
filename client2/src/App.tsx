@@ -18,7 +18,7 @@ import { ellipse } from 'ionicons/icons';
 import Dashboard from './components/Dashboard';
 
 import Login from './pages/Login';
-
+import Blob from './components/Blob';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -50,7 +50,7 @@ const App: React.FC<ContainerProps>= () => {
   return (
 
     <IonApp>    
-     
+   
      
      <IonReactRouter>
       <IonTabs>
@@ -58,12 +58,15 @@ const App: React.FC<ContainerProps>= () => {
          
           <Route exact path="/">
           { code ? <Dashboard code={code} /> : <Login /> } 
+          <Blob/>
           </Route>
+        
         </IonRouterOutlet>
         <IonTabBar slot="bottom">         
           <IonTabButton tab="tab2" href="/">
             <IonIcon icon={ellipse} />
             <IonLabel>Tab 2</IonLabel>
+          
           </IonTabButton>
          
         </IonTabBar>
